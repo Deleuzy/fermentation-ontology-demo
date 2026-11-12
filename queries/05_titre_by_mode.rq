@@ -1,0 +1,18 @@
+# Batch against fed-batch: number of runs with a titre, mean and best titre.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
+
+SELECT ?mode (COUNT(?value) AS ?n_with_titre)
+       (ROUND(AVG(?value) * 100) / 100 AS ?mean_titre) (MAX(?value) AS ?max_titre)
+WHERE {
+  VALUES ?mode_class { ferm:0000002 ferm:0000003 }
+  ?run a ?mode_class .
+  ?mode_class rdfs:label ?mode .
+  ?datum a ferm:0000010 ;
+         obo:IAO_0000136 ?run ;
+         obo:IAO_0000004 ?value .
+}
+GROUP BY ?mode
+ORDER BY ?mode

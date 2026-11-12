@@ -1,0 +1,160 @@
+{
+    "$defs": {
+        "CarbonSource": {
+            "description": "Main carbon source in the medium, mapped to ChEBI.",
+            "enum": [
+                "glucose",
+                "glycerol",
+                "methanol",
+                "sucrose"
+            ],
+            "title": "CarbonSource",
+            "type": "string"
+        },
+        "FermentationRun": {
+            "additionalProperties": false,
+            "description": "Metadata for one fermentation run.",
+            "properties": {
+                "bioreactor_id": {
+                    "description": "Local identifier of the bioreactor.",
+                    "type": "string"
+                },
+                "carbon_source": {
+                    "$ref": "#/$defs/CarbonSource",
+                    "description": "Main carbon source in the medium."
+                },
+                "duration_h": {
+                    "description": "Time from inoculation to harvest in hours.",
+                    "minimum": 0,
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "medium_id": {
+                    "description": "Local identifier of the culture medium.",
+                    "type": "string"
+                },
+                "mode": {
+                    "$ref": "#/$defs/RunMode",
+                    "description": "Batch or fed-batch."
+                },
+                "ncbi_taxon": {
+                    "description": "NCBITaxon CURIE of the strain's species.",
+                    "pattern": "^NCBITaxon:[0-9]+$",
+                    "type": "string"
+                },
+                "organism_name": {
+                    "description": "Free text organism name, kept for humans. The taxon is the identifier.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pH": {
+                    "description": "Mean culture pH.",
+                    "maximum": 14,
+                    "minimum": 0,
+                    "type": "number"
+                },
+                "run_id": {
+                    "description": "Run identifier, unique within the file.",
+                    "pattern": "^[A-Z][0-9]{2}$",
+                    "type": "string"
+                },
+                "strain_id": {
+                    "description": "Local identifier of the production strain.",
+                    "type": "string"
+                },
+                "target_product": {
+                    "description": "Name of the product the run is meant to make.",
+                    "type": "string"
+                },
+                "temperature_C": {
+                    "description": "Mean culture temperature in degrees Celsius.",
+                    "maximum": 80,
+                    "minimum": 4,
+                    "type": "number"
+                },
+                "titre_g_per_L": {
+                    "description": "Final product titre in gram per liter.",
+                    "minimum": 0,
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "working_volume_L": {
+                    "description": "Starting working volume in liters.",
+                    "minimum": 0,
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "run_id",
+                "strain_id",
+                "ncbi_taxon",
+                "target_product",
+                "mode",
+                "medium_id",
+                "carbon_source",
+                "bioreactor_id",
+                "temperature_C",
+                "pH"
+            ],
+            "title": "FermentationRun",
+            "type": "object"
+        },
+        "RunCollection": {
+            "additionalProperties": false,
+            "description": "Container used to validate a whole CSV file at once.",
+            "properties": {
+                "runs": {
+                    "description": "All runs in one CSV file.",
+                    "items": {
+                        "$ref": "#/$defs/FermentationRun"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "RunCollection",
+            "type": "object"
+        },
+        "RunMode": {
+            "description": "How nutrients are supplied during the run.",
+            "enum": [
+                "batch",
+                "fed-batch"
+            ],
+            "title": "RunMode",
+            "type": "string"
+        }
+    },
+    "$id": "https://github.com/Deleuzy/fermentation-ontology-demo/schema/run_metadata",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "Container used to validate a whole CSV file at once.",
+    "metamodel_version": "1.12.0",
+    "properties": {
+        "runs": {
+            "description": "All runs in one CSV file.",
+            "items": {
+                "$ref": "#/$defs/FermentationRun"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
+    "title": "run_metadata",
+    "type": "object",
+    "version": "2026-11-12"
+}
+

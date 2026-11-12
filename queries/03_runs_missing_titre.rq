@@ -1,0 +1,17 @@
+# Which runs have no titre recorded? Titre is recommended, not required,
+# so these runs pass SHACL but are flagged for follow up.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
+
+SELECT ?run_label
+WHERE {
+  ?run a ferm:0000001 ;
+       rdfs:label ?run_label .
+  FILTER NOT EXISTS {
+    ?datum a ferm:0000010 ;
+           obo:IAO_0000136 ?run .
+  }
+}
+ORDER BY ?run_label

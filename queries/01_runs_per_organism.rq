@@ -1,0 +1,17 @@
+# How many runs used each organism? Organisms are NCBITaxon classes, so the
+# label comes from the ontology stub, not the CSV.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
+
+SELECT ?taxon ?organism (COUNT(DISTINCT ?run) AS ?runs)
+WHERE {
+  ?run a ferm:0000001 ;
+       obo:RO_0000057 ?strain .
+  ?strain a ferm:0000004 , ?taxon .
+  ?taxon rdfs:label ?organism .
+  FILTER(STRSTARTS(STR(?taxon), "http://purl.obolibrary.org/obo/NCBITaxon_"))
+}
+GROUP BY ?taxon ?organism
+ORDER BY DESC(?runs) ?organism

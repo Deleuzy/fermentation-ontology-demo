@@ -1,0 +1,18 @@
+# Which runs used methanol (CHEBI:17790) as carbon source, and with which organism?
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
+
+SELECT ?run_label ?organism
+WHERE {
+  ?run a ferm:0000001 ;
+       rdfs:label ?run_label ;
+       obo:OBI_0000293/ferm:0000101 ?portion ;
+       obo:RO_0000057 ?strain .
+  ?portion a obo:CHEBI_17790 .
+  ?strain a ferm:0000004 , ?taxon .
+  ?taxon rdfs:label ?organism .
+  FILTER(STRSTARTS(STR(?taxon), "http://purl.obolibrary.org/obo/NCBITaxon_"))
+}
+ORDER BY ?run_label

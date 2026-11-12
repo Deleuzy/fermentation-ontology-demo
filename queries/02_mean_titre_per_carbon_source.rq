@@ -1,0 +1,24 @@
+# Mean product titre per carbon source, with the unit taken from the data.
+# Runs without a titre are left out of the mean and counted separately.
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo:  <http://purl.obolibrary.org/obo/>
+PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
+
+SELECT ?carbon_source ?unit (COUNT(?value) AS ?n_with_titre)
+       (ROUND(AVG(?value) * 100) / 100 AS ?mean_titre)
+WHERE {
+  ?run a ferm:0000001 ;
+       obo:OBI_0000293 ?medium .
+  ?medium ferm:0000101 ?portion .
+  ?portion a ?chem .
+  ?chem rdfs:label ?carbon_source .
+  FILTER(STRSTARTS(STR(?chem), "http://purl.obolibrary.org/obo/CHEBI_"))
+  ?datum a ferm:0000010 ;
+         obo:IAO_0000136 ?run ;
+         obo:IAO_0000004 ?value ;
+         obo:IAO_0000039 ?u .
+  ?u rdfs:label ?unit .
+}
+GROUP BY ?carbon_source ?unit
+ORDER BY DESC(?mean_titre)

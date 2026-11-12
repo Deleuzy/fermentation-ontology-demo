@@ -1,0 +1,371 @@
+[
+  {
+    "curie": "BFO:0000015",
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000015",
+    "expected_label": "process",
+    "ols_label": "process",
+    "ols_ontology": "bfo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "BFO:0000031",
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000031",
+    "expected_label": "generically dependent continuant",
+    "ols_label": "generically dependent continuant",
+    "ols_ontology": "bfo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "BFO:0000040",
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000040",
+    "expected_label": "material entity",
+    "ols_label": "material entity",
+    "ols_ontology": "bfo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "BFO:0000051",
+    "iri": "http://purl.obolibrary.org/obo/BFO_0000051",
+    "expected_label": "has part",
+    "ols_label": "has part",
+    "ols_ontology": "ro",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000030",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000030",
+    "expected_label": "information content entity",
+    "ols_label": "information content entity",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000109",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000109",
+    "expected_label": "measurement datum",
+    "ols_label": "measurement datum",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000032",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000032",
+    "expected_label": "scalar measurement datum",
+    "ols_label": "scalar measurement datum",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000136",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000136",
+    "expected_label": "is about",
+    "ols_label": "is about",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000004",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000004",
+    "expected_label": "has measurement value",
+    "ols_label": "has measurement value",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000039",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000039",
+    "expected_label": "has measurement unit label",
+    "ols_label": "has measurement unit label",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000115",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000115",
+    "expected_label": "definition",
+    "ols_label": "definition",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000116",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000116",
+    "expected_label": "editor note",
+    "ols_label": "editor note",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "IAO:0000412",
+    "iri": "http://purl.obolibrary.org/obo/IAO_0000412",
+    "expected_label": "imported from",
+    "ols_label": "imported from",
+    "ols_ontology": "iao",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "RO:0000057",
+    "iri": "http://purl.obolibrary.org/obo/RO_0000057",
+    "expected_label": "has participant",
+    "ols_label": "has participant",
+    "ols_ontology": "ro",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0000293",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0000293",
+    "expected_label": "has specified input",
+    "ols_label": "has specified input",
+    "ols_ontology": "obi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0000299",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0000299",
+    "expected_label": "has specified output",
+    "ols_label": "has specified output",
+    "ols_ontology": "obi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0000079",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0000079",
+    "expected_label": "culture medium",
+    "ols_label": "culture medium",
+    "ols_ontology": "obi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0001046",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0001046",
+    "expected_label": "bioreactor",
+    "ols_label": "bioreactor",
+    "ols_ontology": "obi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "COB:0000022",
+    "iri": "http://purl.obolibrary.org/obo/COB_0000022",
+    "expected_label": "organism",
+    "ols_label": "organism",
+    "ols_ontology": "cob",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "COB:0000082",
+    "iri": "http://purl.obolibrary.org/obo/COB_0000082",
+    "expected_label": "planned process",
+    "ols_label": "planned process",
+    "ols_ontology": "cob",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "NCBITaxon:4932",
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_4932",
+    "expected_label": "Saccharomyces cerevisiae",
+    "ols_label": "Saccharomyces cerevisiae",
+    "ols_ontology": "ncbitaxon",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "NCBITaxon:562",
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_562",
+    "expected_label": "Escherichia coli",
+    "ols_label": "Escherichia coli",
+    "ols_ontology": "ncbitaxon",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "NCBITaxon:460519",
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_460519",
+    "expected_label": "Komagataella phaffii",
+    "ols_label": "Komagataella phaffii",
+    "ols_ontology": "ncbitaxon",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "NCBITaxon:1423",
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_1423",
+    "expected_label": "Bacillus subtilis",
+    "ols_label": "Bacillus subtilis",
+    "ols_ontology": "ncbitaxon",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "NCBITaxon:51453",
+    "iri": "http://purl.obolibrary.org/obo/NCBITaxon_51453",
+    "expected_label": "Trichoderma reesei",
+    "ols_label": "Trichoderma reesei",
+    "ols_ontology": "ncbitaxon",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "CHEBI:17234",
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_17234",
+    "expected_label": "glucose",
+    "ols_label": "glucose",
+    "ols_ontology": "chebi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "CHEBI:17754",
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_17754",
+    "expected_label": "glycerol",
+    "ols_label": "glycerol",
+    "ols_ontology": "chebi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "CHEBI:17790",
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_17790",
+    "expected_label": "methanol",
+    "ols_label": "methanol",
+    "ols_ontology": "chebi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "CHEBI:17992",
+    "iri": "http://purl.obolibrary.org/obo/CHEBI_17992",
+    "expected_label": "sucrose",
+    "ols_label": "sucrose",
+    "ols_ontology": "chebi",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000027",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000027",
+    "expected_label": "degree Celsius",
+    "ols_label": "degree Celsius",
+    "ols_ontology": "uo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000032",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000032",
+    "expected_label": "hour",
+    "ols_label": "hour",
+    "ols_ontology": "uo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000175",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000175",
+    "expected_label": "gram per liter",
+    "ols_label": "gram per liter",
+    "ols_ontology": "uo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000196",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000196",
+    "expected_label": "pH",
+    "ols_label": "pH",
+    "ols_ontology": "uo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000099",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000099",
+    "expected_label": "liter",
+    "ols_label": "liter",
+    "ols_ontology": "uo",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0100026",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0100026",
+    "expected_label": "obsolete organism",
+    "ols_label": "obsolete organism",
+    "ols_ontology": "obi",
+    "used_in": "gap",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0000011",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0000011",
+    "expected_label": "obsolete planned process",
+    "ols_label": "obsolete planned process",
+    "ols_ontology": "obi",
+    "used_in": "gap",
+    "verified": true
+  },
+  {
+    "curie": "GO:0006113",
+    "iri": "http://purl.obolibrary.org/obo/GO_0006113",
+    "expected_label": "fermentation",
+    "ols_label": "fermentation",
+    "ols_ontology": "go",
+    "used_in": "gap",
+    "verified": true
+  },
+  {
+    "curie": "UO:0010080",
+    "iri": "http://purl.obolibrary.org/obo/UO_0010080",
+    "expected_label": "titer",
+    "ols_label": "titer",
+    "ols_ontology": "uo",
+    "used_in": "gap",
+    "verified": true
+  },
+  {
+    "curie": "MSIO:0000181",
+    "iri": "http://purl.obolibrary.org/obo/MSIO_0000181",
+    "expected_label": "batch cell culture",
+    "ols_label": "batch cell culture",
+    "ols_ontology": "msio",
+    "used_in": "gap",
+    "verified": true
+  },
+  {
+    "curie": "MSIO:0000165",
+    "iri": "http://purl.obolibrary.org/obo/MSIO_0000165",
+    "expected_label": "constantly fed-batch culture reactor",
+    "ols_label": "constantly fed-batch culture reactor",
+    "ols_ontology": "msio",
+    "used_in": "gap",
+    "verified": true
+  },
+  {
+    "curie": "NCIT:C210081",
+    "iri": "http://purl.obolibrary.org/obo/NCIT_C210081",
+    "expected_label": "Incubation Temperature",
+    "ols_label": "Incubation Temperature",
+    "ols_ontology": "ncit",
+    "used_in": "gap",
+    "verified": true
+  }
+]

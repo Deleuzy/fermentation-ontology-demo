@@ -1,0 +1,2 @@
+run_id,strain_id,ncbi_taxon,organism_name,target_product,mode,medium_id,carbon_source,bioreactor_id,working_volume_L,temperature_C,pH,duration_h,titre_g_per_L
+B01,S99,,unknown yeast,beta-lactoglobulin,fed-batch,,glucose,BR1,1.0,30.0,15.0,96,2.0

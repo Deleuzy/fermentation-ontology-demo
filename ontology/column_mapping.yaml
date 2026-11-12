@@ -1,0 +1,103 @@
+# How each CSV column maps to ontology terms, and what was checked.
+# status:
+#   reused  : an existing community term covers it and is used as is
+#   new     : no existing term fitted; a FERM term was minted (proposal below)
+#   local   : a local identifier, mapped to an instance IRI, needs no term
+# "checked" lists terms found in OLS searches (Nov 2026) and why they were
+# not used. All CURIEs here are in ontology/external_terms.json.
+columns:
+  run_id:
+    status: new
+    maps_to: [FERM:0000001]
+    checked:
+      - curie: GO:0006113
+        why_not: GO fermentation is the metabolic process in the cell, not a planned production run.
+      - curie: COB:0000082
+        why_not: Used as the parent. Planned process is right but too general on its own.
+    proposed:
+      label: fermentation run
+      parent: COB:0000082 planned process
+  mode:
+    status: new
+    maps_to: [FERM:0000002, FERM:0000003]
+    checked:
+      - curie: MSIO:0000181
+        why_not: MSIO batch cell culture is a cultured cell population (a material), not a process.
+      - curie: MSIO:0000165
+        why_not: MSIO constantly fed-batch culture reactor is a device, not a process.
+    proposed:
+      label: batch fermentation run / fed-batch fermentation run
+      parent: FERM:0000001 fermentation run
+  strain_id:
+    status: new
+    maps_to: [FERM:0000004]
+    checked:
+      - curie: COB:0000022
+        why_not: Used as the parent. Organism has no notion of an engineered production strain.
+    proposed:
+      label: production strain
+      parent: COB:0000022 organism
+      note: A strain is really a lineage or population. A better model would follow how OBI or EFO treat strains.
+  ncbi_taxon:
+    status: reused
+    maps_to: [NCBITaxon:4932, NCBITaxon:562, NCBITaxon:460519, NCBITaxon:1423, NCBITaxon:51453]
+  organism_name:
+    status: local
+    maps_to: []
+    note: Free text, kept in the CSV for people. The label comes from NCBITaxon instead.
+  target_product:
+    status: new
+    maps_to: [FERM:0000005]
+    proposed:
+      label: target product
+      parent: BFO:0000040 material entity
+      note: Each product should point to a Protein Ontology (PR) term. Not done because the PR IRIs were not checked.
+  medium_id:
+    status: reused
+    maps_to: [OBI:0000079]
+  carbon_source:
+    status: new
+    maps_to: [FERM:0000101, CHEBI:17234, CHEBI:17754, CHEBI:17790, CHEBI:17992]
+    proposed:
+      label: has carbon source
+      parent: BFO:0000051 has part
+      note: The chemicals are reused from ChEBI; only the relation is new. A role based model would be cleaner.
+  bioreactor_id:
+    status: reused
+    maps_to: [OBI:0001046]
+  working_volume_L:
+    status: new
+    maps_to: [FERM:0000014, UO:0000099]
+    proposed:
+      label: working volume datum
+      parent: IAO:0000032 scalar measurement datum
+  temperature_C:
+    status: new
+    maps_to: [FERM:0000011, UO:0000027]
+    checked:
+      - curie: NCIT:C210081
+        why_not: NCIT Incubation Temperature is close, but NCIT is not aligned to BFO, so mixing it in would break the IAO datum pattern.
+    proposed:
+      label: culture temperature datum
+      parent: IAO:0000032 scalar measurement datum
+  pH:
+    status: new
+    maps_to: [FERM:0000012, UO:0000196]
+    proposed:
+      label: culture pH datum
+      parent: IAO:0000032 scalar measurement datum
+  duration_h:
+    status: new
+    maps_to: [FERM:0000013, UO:0000032]
+    proposed:
+      label: run duration datum
+      parent: IAO:0000032 scalar measurement datum
+  titre_g_per_L:
+    status: new
+    maps_to: [FERM:0000010, UO:0000175]
+    checked:
+      - curie: UO:0010080
+        why_not: UO titer is a dilution based unit (serial dilution end point), not a mass concentration.
+    proposed:
+      label: product titre datum
+      parent: IAO:0000032 scalar measurement datum

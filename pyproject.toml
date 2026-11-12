@@ -1,0 +1,39 @@
+[project]
+name = "fermentation-ontology-demo"
+version = "0.1.0"
+description = "Learning demo: a small BFO aligned OWL ontology for fermentation runs, CSV to RDF with provenance, SPARQL, SHACL and LinkML."
+authors = [
+    { name = "Deleuzy", email = "146382697+Deleuzy@users.noreply.github.com" }
+]
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "linkml>=1.12.1",
+    "owlready2>=0.51",
+    "pyshacl>=0.40.2",
+    "pyyaml>=6.0",
+    "rdflib>=7.6.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.26,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ferm_demo"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.4",
+]
+
+[tool.ruff]
+line-length = 130
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,148 @@
+{
+  "ontology": {
+    "ontology_triples": 194,
+    "classes": 29,
+    "ferm_classes": 10,
+    "external_classes": 19,
+    "properties": 11,
+    "ferm_properties": 1,
+    "external_properties": 10,
+    "unit_individuals": 5,
+    "subclass_axioms": 29,
+    "existential_restrictions": 3,
+    "disjointness_axioms": 4
+  },
+  "external_terms": {
+    "looked_up_in_ols": 41,
+    "verified": 41,
+    "used_in_ontology": 34,
+    "used_but_not_verified": []
+  },
+  "metadata_problems": [],
+  "conversion": {
+    "csv_rows": 12,
+    "instance_triples": 375,
+    "provenance_records": 448,
+    "provenance_triples": 2240
+  },
+  "reasoning_owl_rl": {
+    "errors_ontology_plus_data": [],
+    "unsatisfiable_ferm_classes": [],
+    "planted_inconsistency_errors": [
+      "Disjoint classes http://purl.obolibrary.org/obo/BFO_0000015 and http://purl.obolibrary.org/obo/BFO_0000040 have a common individual https://github.com/Deleuzy/fermentation-ontology-demo/data/run/R01"
+    ]
+  },
+  "shacl": {
+    "runs_csv_conforms": true,
+    "runs_csv_violations": 0,
+    "broken_csv_conforms": false,
+    "broken_csv_violations": [
+      {
+        "focus": "https://github.com/Deleuzy/fermentation-ontology-demo/data/datum/B01/pH",
+        "message": "pH must be one decimal value between 0 and 14."
+      },
+      {
+        "focus": "https://github.com/Deleuzy/fermentation-ontology-demo/data/run/B01",
+        "message": "A run needs a culture medium as specified input."
+      },
+      {
+        "focus": "https://github.com/Deleuzy/fermentation-ontology-demo/data/strain/S99",
+        "message": "A production strain must be typed with an NCBITaxon class."
+      }
+    ]
+  },
+  "linkml": {
+    "runs_csv_errors": [],
+    "broken_csv_errors": [
+      "'medium_id' is a required property in /runs/0",
+      "'ncbi_taxon' is a required property in /runs/0",
+      "15.0 is greater than the maximum of 14 in /runs/0/pH"
+    ]
+  },
+  "gap_report": {
+    "local": 1,
+    "new": 10,
+    "reused": 3
+  },
+  "queries": {
+    "01_runs_per_organism": [
+      {
+        "taxon": "http://purl.obolibrary.org/obo/NCBITaxon_460519",
+        "organism": "Komagataella phaffii",
+        "runs": 3
+      },
+      {
+        "taxon": "http://purl.obolibrary.org/obo/NCBITaxon_4932",
+        "organism": "Saccharomyces cerevisiae",
+        "runs": 3
+      },
+      {
+        "taxon": "http://purl.obolibrary.org/obo/NCBITaxon_1423",
+        "organism": "Bacillus subtilis",
+        "runs": 2
+      },
+      {
+        "taxon": "http://purl.obolibrary.org/obo/NCBITaxon_562",
+        "organism": "Escherichia coli",
+        "runs": 2
+      },
+      {
+        "taxon": "http://purl.obolibrary.org/obo/NCBITaxon_51453",
+        "organism": "Trichoderma reesei",
+        "runs": 2
+      }
+    ],
+    "02_mean_titre_per_carbon_source": [
+      {
+        "carbon_source": "methanol",
+        "unit": "gram per liter",
+        "n_with_titre": 2,
+        "mean_titre": 4.9
+      },
+      {
+        "carbon_source": "glucose",
+        "unit": "gram per liter",
+        "n_with_titre": 5,
+        "mean_titre": 3.52
+      },
+      {
+        "carbon_source": "sucrose",
+        "unit": "gram per liter",
+        "n_with_titre": 3,
+        "mean_titre": 0.97
+      }
+    ],
+    "03_runs_missing_titre": [
+      {
+        "run_label": "fermentation run R06"
+      },
+      {
+        "run_label": "fermentation run R10"
+      }
+    ],
+    "04_runs_using_methanol": [
+      {
+        "run_label": "fermentation run R04",
+        "organism": "Komagataella phaffii"
+      },
+      {
+        "run_label": "fermentation run R05",
+        "organism": "Komagataella phaffii"
+      }
+    ],
+    "05_titre_by_mode": [
+      {
+        "mode": "batch fermentation run",
+        "n_with_titre": 3,
+        "mean_titre": 0.9,
+        "max_titre": 1.2
+      },
+      {
+        "mode": "fed-batch fermentation run",
+        "n_with_titre": 7,
+        "mean_titre": 3.94,
+        "max_titre": 7.9
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix obo:  <http://purl.obolibrary.org/obo/> .
+@prefix ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_> .
+@prefix fs:   <https://github.com/Deleuzy/fermentation-ontology-demo/shapes/> .
+
+# Required metadata for a fermentation run. Recommended fields (titre,
+# duration, working volume) are checked for type and range when present
+# but are not required.
+
+fs:RunShape a sh:NodeShape ;
+    sh:targetClass ferm:0000001 ;
+    sh:property [
+        sh:path rdfs:label ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "A run needs exactly one label." ] ;
+    sh:property [
+        sh:path obo:RO_0000057 ;
+        sh:qualifiedValueShape [ sh:class ferm:0000004 ] ;
+        sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ;
+        sh:message "A run needs exactly one production strain as participant." ] ;
+    sh:property [
+        sh:path obo:RO_0000057 ;
+        sh:qualifiedValueShape [ sh:class obo:OBI_0001046 ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "A run needs a bioreactor as participant." ] ;
+    sh:property [
+        sh:path obo:OBI_0000293 ; sh:class obo:OBI_0000079 ; sh:minCount 1 ;
+        sh:message "A run needs a culture medium as specified input." ] ;
+    sh:property [
+        sh:path obo:OBI_0000299 ; sh:class ferm:0000005 ; sh:minCount 1 ;
+        sh:message "A run needs a target product as specified output." ] ;
+    sh:property [
+        sh:path [ sh:inversePath obo:IAO_0000136 ] ;
+        sh:qualifiedValueShape [ sh:class ferm:0000011 ] ;
+        sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ;
+        sh:message "A run needs exactly one culture temperature datum." ] ;
+    sh:property [
+        sh:path [ sh:inversePath obo:IAO_0000136 ] ;
+        sh:qualifiedValueShape [ sh:class ferm:0000012 ] ;
+        sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ;
+        sh:message "A run needs exactly one culture pH datum." ] ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "A run must be typed as batch or fed-batch." ;
+        sh:prefixes fs:prefixes ;
+        sh:select """
+            SELECT $this WHERE {
+              FILTER NOT EXISTS { $this a ?m . FILTER(?m IN (ferm:0000002, ferm:0000003)) }
+            }""" ] .
+
+fs:StrainShape a sh:NodeShape ;
+    sh:targetClass ferm:0000004 ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "A production strain must be typed with an NCBITaxon class." ;
+        sh:prefixes fs:prefixes ;
+        sh:select """
+            SELECT $this WHERE {
+              FILTER NOT EXISTS {
+                $this a ?t .
+                FILTER(STRSTARTS(STR(?t), "http://purl.obolibrary.org/obo/NCBITaxon_"))
+              }
+            }""" ] .
+
+fs:MediumShape a sh:NodeShape ;
+    sh:targetClass obo:OBI_0000079 ;
+    sh:property [
+        sh:path ferm:0000101 ; sh:minCount 1 ;
+        sh:message "A culture medium needs a carbon source." ] .
+
+fs:PhDatumShape a sh:NodeShape ;
+    sh:targetClass ferm:0000012 ;
+    sh:property [
+        sh:path obo:IAO_0000004 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ; sh:maxInclusive 14 ;
+        sh:message "pH must be one decimal value between 0 and 14." ] ;
+    sh:property [ sh:path obo:IAO_0000039 ; sh:hasValue obo:UO_0000196 ;
+        sh:message "pH datum must use the UO pH unit." ] .
+
+fs:TemperatureDatumShape a sh:NodeShape ;
+    sh:targetClass ferm:0000011 ;
+    sh:property [
+        sh:path obo:IAO_0000004 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
+        sh:minInclusive 4 ; sh:maxInclusive 80 ;
+        sh:message "Culture temperature must be one decimal value between 4 and 80 degrees Celsius." ] ;
+    sh:property [ sh:path obo:IAO_0000039 ; sh:hasValue obo:UO_0000027 ;
+        sh:message "Temperature datum must use degree Celsius." ] .
+
+fs:TitreDatumShape a sh:NodeShape ;
+    sh:targetClass ferm:0000010 ;
+    sh:property [
+        sh:path obo:IAO_0000004 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message "Titre must be one non negative decimal value." ] ;
+    sh:property [ sh:path obo:IAO_0000039 ; sh:hasValue obo:UO_0000175 ;
+        sh:message "Titre datum must use gram per liter." ] .
+
+fs:prefixes a owl:Ontology ;
+    sh:declare [ sh:prefix "ferm" ; sh:namespace "https://github.com/Deleuzy/fermentation-ontology-demo/FERM_"^^xsd:anyURI ] .

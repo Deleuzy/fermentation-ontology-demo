@@ -1,0 +1,13 @@
+run_id,strain_id,ncbi_taxon,organism_name,target_product,mode,medium_id,carbon_source,bioreactor_id,working_volume_L,temperature_C,pH,duration_h,titre_g_per_L
+R01,S01,NCBITaxon:4932,Saccharomyces cerevisiae,beta-lactoglobulin,fed-batch,M01,glucose,BR1,1.0,30.0,5.0,96,2.4
+R02,S01,NCBITaxon:4932,Saccharomyces cerevisiae,beta-lactoglobulin,fed-batch,M01,glucose,BR2,1.0,30.0,5.0,96,2.8
+R03,S01,NCBITaxon:4932,Saccharomyces cerevisiae,beta-lactoglobulin,batch,M02,sucrose,BR1,1.0,30.0,5.5,48,0.9
+R04,S02,NCBITaxon:460519,Komagataella phaffii,ovalbumin,fed-batch,M03,methanol,BR3,2.0,28.0,6.0,120,5.1
+R05,S02,NCBITaxon:460519,Komagataella phaffii,ovalbumin,fed-batch,M03,methanol,BR3,2.0,28.0,6.0,120,4.7
+R06,S02,NCBITaxon:460519,Komagataella phaffii,ovalbumin,fed-batch,M04,glycerol,BR2,2.0,30.0,6.0,72,
+R07,S03,NCBITaxon:562,Escherichia coli,alpha-s1-casein,batch,M05,glucose,BR1,1.0,37.0,7.0,24,1.2
+R08,S03,NCBITaxon:562,Escherichia coli,alpha-s1-casein,fed-batch,M05,glucose,BR2,1.0,37.0,7.0,36,3.3
+R09,S04,NCBITaxon:1423,Bacillus subtilis,subtilisin,batch,M06,sucrose,BR1,1.0,37.0,7.0,30,0.6
+R10,S05,NCBITaxon:51453,Trichoderma reesei,cellulase,fed-batch,M07,glucose,BR3,2.0,28.0,5.0,144,
+R11,S05,NCBITaxon:51453,Trichoderma reesei,cellulase,fed-batch,M07,glucose,BR3,2.0,28.0,4.8,144,7.9
+R12,S04,NCBITaxon:1423,Bacillus subtilis,subtilisin,fed-batch,M06,sucrose,BR2,1.0,37.0,6.8,40,1.4
