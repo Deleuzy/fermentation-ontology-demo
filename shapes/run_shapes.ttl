@@ -12,50 +12,52 @@
 # but are not required.
 
 fs:RunShape a sh:NodeShape ;
-    sh:targetClass ferm:0000001 ;
+    sh:targetClass obo:PREFER_0000004 ;
     sh:property [
         sh:path rdfs:label ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
         sh:message "A run needs exactly one label." ] ;
     sh:property [
-        sh:path obo:RO_0000057 ;
-        sh:qualifiedValueShape [ sh:class ferm:0000004 ] ;
-        sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ;
-        sh:message "A run needs exactly one production strain as participant." ] ;
+        sh:path obo:PREFER_8000015 ; sh:class obo:PREFER_0000012 ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "A run needs exactly one cell biocatalyst (strain)." ] ;
+    sh:property [
+        sh:path obo:PREFER_8000006 ; sh:class obo:PREFER_0000014 ; sh:minCount 1 ;
+        sh:message "A run needs a bioreactor." ] ;
     sh:property [
         sh:path obo:RO_0000057 ;
-        sh:qualifiedValueShape [ sh:class obo:OBI_0001046 ] ;
+        sh:qualifiedValueShape [ sh:class obo:PREFER_0000011 ] ;
         sh:qualifiedMinCount 1 ;
-        sh:message "A run needs a bioreactor as participant." ] ;
-    sh:property [
-        sh:path obo:OBI_0000293 ; sh:class obo:OBI_0000079 ; sh:minCount 1 ;
-        sh:message "A run needs a culture medium as specified input." ] ;
+        sh:message "A run needs a fermentation medium as participant." ] ;
     sh:property [
         sh:path obo:OBI_0000299 ; sh:class ferm:0000005 ; sh:minCount 1 ;
         sh:message "A run needs a target product as specified output." ] ;
     sh:property [
-        sh:path [ sh:inversePath obo:IAO_0000136 ] ;
-        sh:qualifiedValueShape [ sh:class ferm:0000011 ] ;
+        sh:path obo:PREFER_8000060 ;
+        sh:qualifiedValueShape [ sh:class obo:PREFER_0000041 ] ;
         sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ;
-        sh:message "A run needs exactly one culture temperature datum." ] ;
+        sh:message "A run needs exactly one temperature measured process variable." ] ;
     sh:property [
-        sh:path [ sh:inversePath obo:IAO_0000136 ] ;
-        sh:qualifiedValueShape [ sh:class ferm:0000012 ] ;
+        sh:path obo:PREFER_8000060 ;
+        sh:qualifiedValueShape [ sh:class obo:PREFER_0000040 ] ;
         sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ;
-        sh:message "A run needs exactly one culture pH datum." ] ;
+        sh:message "A run needs exactly one pH measured process variable." ] ;
     sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "A run must be typed as batch or fed-batch." ;
+        sh:message "A run needs a batch or fed-batch operation mode." ;
         sh:prefixes fs:prefixes ;
         sh:select """
             SELECT $this WHERE {
-              FILTER NOT EXISTS { $this a ?m . FILTER(?m IN (ferm:0000002, ferm:0000003)) }
+              FILTER NOT EXISTS {
+                ?m obo:IAO_0000136 $this ; a ?c .
+                FILTER(?c IN (obo:PREFER_0000181, obo:PREFER_0000182))
+              }
             }""" ] .
 
 fs:StrainShape a sh:NodeShape ;
-    sh:targetClass ferm:0000004 ;
+    sh:targetClass obo:PREFER_0000012 ;
     sh:sparql [
         a sh:SPARQLConstraint ;
-        sh:message "A production strain must be typed with an NCBITaxon class." ;
+        sh:message "A cell biocatalyst (strain) must be typed with an NCBITaxon class." ;
         sh:prefixes fs:prefixes ;
         sh:select """
             SELECT $this WHERE {
@@ -66,13 +68,13 @@ fs:StrainShape a sh:NodeShape ;
             }""" ] .
 
 fs:MediumShape a sh:NodeShape ;
-    sh:targetClass obo:OBI_0000079 ;
+    sh:targetClass obo:PREFER_0000011 ;
     sh:property [
         sh:path ferm:0000101 ; sh:minCount 1 ;
-        sh:message "A culture medium needs a carbon source." ] .
+        sh:message "A fermentation medium needs a carbon source." ] .
 
 fs:PhDatumShape a sh:NodeShape ;
-    sh:targetClass ferm:0000012 ;
+    sh:targetClass obo:PREFER_0000040 ;
     sh:property [
         sh:path obo:IAO_0000004 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
         sh:minInclusive 0 ; sh:maxInclusive 14 ;
@@ -81,7 +83,7 @@ fs:PhDatumShape a sh:NodeShape ;
         sh:message "pH datum must use the UO pH unit." ] .
 
 fs:TemperatureDatumShape a sh:NodeShape ;
-    sh:targetClass ferm:0000011 ;
+    sh:targetClass obo:PREFER_0000041 ;
     sh:property [
         sh:path obo:IAO_0000004 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
         sh:minInclusive 4 ; sh:maxInclusive 80 ;
@@ -90,7 +92,7 @@ fs:TemperatureDatumShape a sh:NodeShape ;
         sh:message "Temperature datum must use degree Celsius." ] .
 
 fs:TitreDatumShape a sh:NodeShape ;
-    sh:targetClass ferm:0000010 ;
+    sh:targetClass obo:PREFER_0000091 ;
     sh:property [
         sh:path obo:IAO_0000004 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:decimal ;
         sh:minInclusive 0 ;
@@ -99,4 +101,5 @@ fs:TitreDatumShape a sh:NodeShape ;
         sh:message "Titre datum must use gram per liter." ] .
 
 fs:prefixes a owl:Ontology ;
-    sh:declare [ sh:prefix "ferm" ; sh:namespace "https://github.com/Deleuzy/fermentation-ontology-demo/FERM_"^^xsd:anyURI ] .
+    sh:declare [ sh:prefix "ferm" ; sh:namespace "https://github.com/Deleuzy/fermentation-ontology-demo/FERM_"^^xsd:anyURI ] ,
+               [ sh:prefix "obo" ; sh:namespace "http://purl.obolibrary.org/obo/"^^xsd:anyURI ] .

@@ -75,14 +75,17 @@ def _convert_row(row: dict[str, str], add) -> None:
     run = ns.DATA[f"run/{v['run_id']}"]
     add(run, RDF.type, ns.FERMENTATION_RUN, None)
     add(run, RDFS.label, Literal(f"fermentation run {v['run_id']}"), "run_id")
+
     if v["mode"]:
-        add(run, RDF.type, ns.MODE_CLASS[v["mode"]], "mode")
+        mode = ns.DATA[f"datum/{v['run_id']}/mode"]
+        add(mode, RDF.type, ns.MODE_CLASS[v["mode"]], "mode")
+        add(mode, ns.IS_ABOUT, run, "mode")
 
     if v["strain_id"]:
         strain = ns.DATA[f"strain/{v['strain_id']}"]
-        add(strain, RDF.type, ns.PRODUCTION_STRAIN, "strain_id")
+        add(strain, RDF.type, ns.CELL_BIOCATALYST, "strain_id")
         add(strain, RDFS.label, Literal(f"strain {v['strain_id']}"), "strain_id")
-        add(run, ns.HAS_PARTICIPANT, strain, "strain_id")
+        add(run, ns.CULTURES_CELL, strain, "strain_id")
         if v["ncbi_taxon"]:
             add(strain, RDF.type, _curie_to_iri(v["ncbi_taxon"]), "ncbi_taxon")
 
@@ -90,13 +93,13 @@ def _convert_row(row: dict[str, str], add) -> None:
         reactor = ns.DATA[f"bioreactor/{v['bioreactor_id']}"]
         add(reactor, RDF.type, ns.BIOREACTOR, "bioreactor_id")
         add(reactor, RDFS.label, Literal(f"bioreactor {v['bioreactor_id']}"), "bioreactor_id")
-        add(run, ns.HAS_PARTICIPANT, reactor, "bioreactor_id")
+        add(run, ns.USES_BIOREACTOR, reactor, "bioreactor_id")
 
     if v["medium_id"]:
         medium = ns.DATA[f"medium/{v['medium_id']}"]
-        add(medium, RDF.type, ns.CULTURE_MEDIUM, "medium_id")
-        add(medium, RDFS.label, Literal(f"culture medium {v['medium_id']}"), "medium_id")
-        add(run, ns.HAS_SPECIFIED_INPUT, medium, "medium_id")
+        add(medium, RDF.type, ns.FERMENTATION_MEDIUM, "medium_id")
+        add(medium, RDFS.label, Literal(f"fermentation medium {v['medium_id']}"), "medium_id")
+        add(run, ns.HAS_PARTICIPANT, medium, "medium_id")
         if v["carbon_source"]:
             portion = ns.DATA[f"medium/{v['medium_id']}/carbon-source"]
             add(portion, RDF.type, ns.CARBON_SOURCE_CLASS[v["carbon_source"]], "carbon_source")
@@ -108,12 +111,15 @@ def _convert_row(row: dict[str, str], add) -> None:
         add(product, RDFS.label, Literal(v["target_product"]), "target_product")
         add(run, ns.HAS_SPECIFIED_OUTPUT, product, "target_product")
 
-    for column, (datum_class, unit) in ns.MEASUREMENT_COLUMNS.items():
+    for column, (datum_class, unit, link) in ns.MEASUREMENT_COLUMNS.items():
         if not v[column]:
             continue
         datum = ns.DATA[f"datum/{v['run_id']}/{column}"]
         add(datum, RDF.type, datum_class, column)
-        add(datum, ns.IS_ABOUT, run, column)
+        if link == ns.MEASURED:
+            add(run, ns.HAS_MEASURED_VARIABLE, datum, column)
+        else:
+            add(datum, ns.IS_ABOUT, run, column)
         add(datum, ns.HAS_VALUE, Literal(Decimal(v[column]), datatype=XSD.decimal), column)
         add(datum, ns.HAS_UNIT, unit, column)
 

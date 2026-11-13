@@ -56,7 +56,7 @@ def test_titre_by_mode(results, rows):
         if r["titre_g_per_L"]:
             by_mode[r["mode"]].append(float(r["titre_g_per_L"]))
     got = {r["mode"]: r for r in results["05_titre_by_mode"]}
-    for mode, label in (("batch", "batch fermentation run"), ("fed-batch", "fed-batch fermentation run")):
+    for mode, label in (("batch", "batch operation mode"), ("fed-batch", "fed-batch operation mode")):
         values = by_mode[mode]
         assert got[label]["n_with_titre"] == len(values)
         assert got[label]["mean_titre"] == pytest.approx(round(sum(values) / len(values), 2))

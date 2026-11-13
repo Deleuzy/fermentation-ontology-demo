@@ -28,9 +28,15 @@ def test_every_term_has_label_and_ferm_terms_have_definitions(onto):
 
 
 def test_fermentation_run_is_a_bfo_process(onto):
-    # FERM run -> COB planned process -> BFO process
-    assert (ns.FERMENTATION_RUN, RDFS.subClassOf, ns.OBO.COB_0000082) in onto
-    assert (ns.OBO.COB_0000082, RDFS.subClassOf, ns.OBO.BFO_0000015) in onto
+    # PREFER run -> PREFER precision fermentation process -> COB planned process -> BFO process
+    chain = [ns.FERMENTATION_RUN, ns.OBO.PREFER_9000003, ns.OBO.COB_0000082, ns.OBO.BFO_0000015]
+    for child, parent in zip(chain, chain[1:], strict=False):
+        assert (child, RDFS.subClassOf, parent) in onto
+
+
+def test_prefer_terms_are_reused(onto):
+    prefer = {str(t) for t in checks.ontology_obo_iris(onto) if "PREFER_" in str(t)}
+    assert len(prefer) >= 20
 
 
 def test_owl_rl_finds_no_inconsistency(onto, good):

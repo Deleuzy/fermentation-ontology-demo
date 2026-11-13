@@ -126,37 +126,10 @@
     "verified": true
   },
   {
-    "curie": "OBI:0000293",
-    "iri": "http://purl.obolibrary.org/obo/OBI_0000293",
-    "expected_label": "has specified input",
-    "ols_label": "has specified input",
-    "ols_ontology": "obi",
-    "used_in": "used",
-    "verified": true
-  },
-  {
     "curie": "OBI:0000299",
     "iri": "http://purl.obolibrary.org/obo/OBI_0000299",
     "expected_label": "has specified output",
     "ols_label": "has specified output",
-    "ols_ontology": "obi",
-    "used_in": "used",
-    "verified": true
-  },
-  {
-    "curie": "OBI:0000079",
-    "iri": "http://purl.obolibrary.org/obo/OBI_0000079",
-    "expected_label": "culture medium",
-    "ols_label": "culture medium",
-    "ols_ontology": "obi",
-    "used_in": "used",
-    "verified": true
-  },
-  {
-    "curie": "OBI:0001046",
-    "iri": "http://purl.obolibrary.org/obo/OBI_0001046",
-    "expected_label": "bioreactor",
-    "ols_label": "bioreactor",
     "ols_ontology": "obi",
     "used_in": "used",
     "verified": true
@@ -177,6 +150,249 @@
     "ols_label": "planned process",
     "ols_ontology": "cob",
     "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "CL:0000000",
+    "iri": "http://purl.obolibrary.org/obo/CL_0000000",
+    "expected_label": "cell",
+    "ols_label": "cell",
+    "ols_ontology": "cl",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000004",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000004",
+    "expected_label": "fermentation run",
+    "ols_label": "fermentation run",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:9000003",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_9000003",
+    "expected_label": "precision fermentation process",
+    "ols_label": "precision fermentation process",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000011",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000011",
+    "expected_label": "fermentation medium",
+    "ols_label": "fermentation medium",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000012",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000012",
+    "expected_label": "cell biocatalyst",
+    "ols_label": "cell biocatalyst",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000014",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000014",
+    "expected_label": "bioreactor",
+    "ols_label": "bioreactor",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000098",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000098",
+    "expected_label": "precision fermentation process variable",
+    "ols_label": "precision fermentation process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:9000000",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_9000000",
+    "expected_label": "precision fermentation setpoint process variable",
+    "ols_label": "precision fermentation setpoint process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:9000001",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_9000001",
+    "expected_label": "precision fermentation measured process variable",
+    "ols_label": "precision fermentation measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:9000002",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_9000002",
+    "expected_label": "precision fermentation calculated process variable",
+    "ols_label": "precision fermentation calculated process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000180",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000180",
+    "expected_label": "operation mode setpoint process variable",
+    "ols_label": "operation mode setpoint process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000181",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000181",
+    "expected_label": "batch operation mode",
+    "ols_label": "batch operation mode",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000182",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000182",
+    "expected_label": "fed-batch operation mode",
+    "ols_label": "fed-batch operation mode",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000041",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000041",
+    "expected_label": "temperature measured process variable",
+    "ols_label": "temperature measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000040",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000040",
+    "expected_label": "pH measured process variable",
+    "ols_label": "pH measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000036",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000036",
+    "expected_label": "initial culture volume measured process variable",
+    "ols_label": "initial culture volume measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000091",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000091",
+    "expected_label": "titer process metric",
+    "ols_label": "titer process metric",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000004",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000004",
+    "expected_label": "has medium ingredient",
+    "ols_label": "has medium ingredient",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000006",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000006",
+    "expected_label": "uses bioreactor",
+    "ols_label": "uses bioreactor",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000015",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000015",
+    "expected_label": "cultures cell",
+    "ols_label": "cultures cell",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000060",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000060",
+    "expected_label": "has measured process variable",
+    "ols_label": "has measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "used",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000074",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000074",
+    "expected_label": "compound concentration variable",
+    "ols_label": "compound concentration variable",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000038",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000038",
+    "expected_label": "batch medium pH measured process variable",
+    "ols_label": "batch medium pH measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000043",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000043",
+    "expected_label": "volume measured process variable",
+    "ols_label": "volume measured process variable",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000203",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000203",
+    "expected_label": "production culture",
+    "ols_label": "production culture",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000017",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000017",
+    "expected_label": "has measured compound",
+    "ols_label": "has measured compound",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000018",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000018",
+    "expected_label": "has operational mode",
+    "ols_label": "has operational mode",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -306,12 +522,39 @@
     "verified": true
   },
   {
+    "curie": "OBI:0000079",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0000079",
+    "expected_label": "culture medium",
+    "ols_label": "culture medium",
+    "ols_ontology": "obi",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0001046",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0001046",
+    "expected_label": "bioreactor",
+    "ols_label": "bioreactor",
+    "ols_ontology": "obi",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "OBI:0000293",
+    "iri": "http://purl.obolibrary.org/obo/OBI_0000293",
+    "expected_label": "has specified input",
+    "ols_label": "has specified input",
+    "ols_ontology": "obi",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
     "curie": "OBI:0100026",
     "iri": "http://purl.obolibrary.org/obo/OBI_0100026",
     "expected_label": "obsolete organism",
     "ols_label": "obsolete organism",
     "ols_ontology": "obi",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -320,7 +563,7 @@
     "expected_label": "obsolete planned process",
     "ols_label": "obsolete planned process",
     "ols_ontology": "obi",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -329,7 +572,7 @@
     "expected_label": "fermentation",
     "ols_label": "fermentation",
     "ols_ontology": "go",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -338,7 +581,7 @@
     "expected_label": "titer",
     "ols_label": "titer",
     "ols_ontology": "uo",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -347,7 +590,7 @@
     "expected_label": "batch cell culture",
     "ols_label": "batch cell culture",
     "ols_ontology": "msio",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -356,7 +599,7 @@
     "expected_label": "constantly fed-batch culture reactor",
     "ols_label": "constantly fed-batch culture reactor",
     "ols_ontology": "msio",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   },
   {
@@ -365,7 +608,7 @@
     "expected_label": "Incubation Temperature",
     "ols_label": "Incubation Temperature",
     "ols_ontology": "ncit",
-    "used_in": "gap",
+    "used_in": "cited",
     "verified": true
   }
 ]

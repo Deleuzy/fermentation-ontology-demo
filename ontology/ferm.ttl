@@ -6,7 +6,9 @@
 @prefix obo:       <http://purl.obolibrary.org/obo/> .
 @prefix FERM:      <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_> .
 
-# A learning demo, not PREFER and not an OBO Foundry ontology.
+# A learning demo, not part of PREFER and not an OBO Foundry ontology.
+# Wherever PREFER (release 2026-08-24) has a fitting term it is reused; FERM
+# terms exist only for the three gaps listed in results/gap_report.md.
 # FERM IRIs are placeholders under the GitHub repository URL and do not resolve.
 # Every obo: IRI below was looked up in the EBI Ontology Lookup Service by
 # scripts/verify_terms.py; the result is saved in ontology/external_terms.json.
@@ -15,10 +17,10 @@
 
 <https://github.com/Deleuzy/fermentation-ontology-demo/ferm.ttl>
     a owl:Ontology ;
-    owl:versionIRI <https://github.com/Deleuzy/fermentation-ontology-demo/releases/2026-11-12/ferm.ttl> ;
-    owl:versionInfo "2026-11-12" ;
+    owl:versionIRI <https://github.com/Deleuzy/fermentation-ontology-demo/releases/2026-11-13/ferm.ttl> ;
+    owl:versionInfo "2026-11-13" ;
     dcterms:title "Fermentation run demo ontology (FERM)" ;
-    dcterms:description "A small OWL ontology describing precision fermentation runs, aligned to BFO and reusing OBI, IAO, RO, COB, NCBITaxon, ChEBI and UO terms. Built as a learning demo with synthetic data." ;
+    dcterms:description "A small OWL ontology describing precision fermentation runs, aligned to BFO, built on PREFER (the precision fermentation ontology) and reusing IAO, RO, OBI, COB, CL, NCBITaxon, ChEBI and UO terms. Built as a learning demo with synthetic data." ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:creator "Bogdan Andone" .
 
@@ -47,7 +49,7 @@ obo:BFO_0000015 owl:disjointWith obo:BFO_0000040 , obo:BFO_0000031 .
 obo:BFO_0000040 owl:disjointWith obo:BFO_0000031 .
 
 #################################################################
-# Object and data properties (RO, OBI, IAO)
+# Object and data properties (RO, OBI, IAO, PREFER)
 #################################################################
 
 obo:BFO_0000051 a owl:ObjectProperty ; rdfs:label "has part" ;
@@ -56,10 +58,6 @@ obo:BFO_0000051 a owl:ObjectProperty ; rdfs:label "has part" ;
 obo:RO_0000057 a owl:ObjectProperty ; rdfs:label "has participant" ;
     rdfs:domain obo:BFO_0000015 ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/ro.owl> .
-
-obo:OBI_0000293 a owl:ObjectProperty ; rdfs:label "has specified input" ;
-    rdfs:subPropertyOf obo:RO_0000057 ;
-    obo:IAO_0000412 <http://purl.obolibrary.org/obo/obi.owl> .
 
 obo:OBI_0000299 a owl:ObjectProperty ; rdfs:label "has specified output" ;
     rdfs:subPropertyOf obo:RO_0000057 ;
@@ -70,22 +68,38 @@ obo:IAO_0000136 a owl:ObjectProperty ; rdfs:label "is about" ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/iao.owl> .
 
 obo:IAO_0000039 a owl:ObjectProperty ; rdfs:label "has measurement unit label" ;
-    rdfs:domain obo:IAO_0000109 ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/iao.owl> .
 
 obo:IAO_0000004 a owl:DatatypeProperty ; rdfs:label "has measurement value" ;
-    rdfs:domain obo:IAO_0000109 ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/iao.owl> .
+
+obo:PREFER_8000004 a owl:ObjectProperty ; rdfs:label "has medium ingredient" ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+
+obo:PREFER_8000006 a owl:ObjectProperty ; rdfs:label "uses bioreactor" ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:PREFER_0000014 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+
+obo:PREFER_8000015 a owl:ObjectProperty ; rdfs:label "cultures cell" ;
+    rdfs:domain obo:BFO_0000015 ;
+    rdfs:range obo:CL_0000000 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+
+obo:PREFER_8000060 a owl:ObjectProperty ; rdfs:label "has measured process variable" ;
+    rdfs:domain obo:PREFER_0000004 ;
+    rdfs:range obo:PREFER_9000001 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
 
 FERM:0000101 a owl:ObjectProperty ;
     rdfs:label "has carbon source" ;
-    rdfs:subPropertyOf obo:BFO_0000051 ;
-    rdfs:domain obo:OBI_0000079 ;
-    obo:IAO_0000115 "A relation between a culture medium and a chemical entity that is part of the medium and is intended as the main carbon and energy source for the organism." ;
-    obo:IAO_0000116 "Modelled as has part, so it says nothing about the role the chemical plays. A cleaner model would give the chemical portion a carbon source role." .
+    rdfs:subPropertyOf obo:PREFER_8000004 ;
+    rdfs:domain obo:PREFER_0000011 ;
+    obo:IAO_0000115 "A relation between a fermentation medium and a chemical entity that is an ingredient of the medium and is intended as the main carbon and energy source for the organism." ;
+    obo:IAO_0000116 "PREFER has has medium ingredient but no way to say which ingredient is the carbon source. A role based model (the chemical bears a carbon source role) would be cleaner." .
 
 #################################################################
-# Reused classes (stubs)
+# Reused classes (stubs). Intermediate PREFER classes are collapsed.
 #################################################################
 
 obo:COB_0000082 a owl:Class ; rdfs:label "planned process" ;
@@ -96,13 +110,9 @@ obo:COB_0000022 a owl:Class ; rdfs:label "organism" ;
     rdfs:subClassOf obo:BFO_0000040 ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/cob.owl> .
 
-obo:OBI_0000079 a owl:Class ; rdfs:label "culture medium" ;
+obo:CL_0000000 a owl:Class ; rdfs:label "cell" ;
     rdfs:subClassOf obo:BFO_0000040 ;
-    obo:IAO_0000412 <http://purl.obolibrary.org/obo/obi.owl> .
-
-obo:OBI_0001046 a owl:Class ; rdfs:label "bioreactor" ;
-    rdfs:subClassOf obo:BFO_0000040 ;
-    obo:IAO_0000412 <http://purl.obolibrary.org/obo/obi.owl> .
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/cl.owl> .
 
 obo:IAO_0000030 a owl:Class ; rdfs:label "information content entity" ;
     rdfs:subClassOf obo:BFO_0000031 ;
@@ -113,6 +123,66 @@ obo:IAO_0000109 a owl:Class ; rdfs:label "measurement datum" ;
 obo:IAO_0000032 a owl:Class ; rdfs:label "scalar measurement datum" ;
     rdfs:subClassOf obo:IAO_0000109 ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/iao.owl> .
+
+# PREFER processes and material entities
+obo:PREFER_9000003 a owl:Class ; rdfs:label "precision fermentation process" ;
+    rdfs:subClassOf obo:COB_0000082 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+# The three restrictions below are a subset of PREFER's own axioms on
+# fermentation run (checked in the 2026-08-24 release file).
+obo:PREFER_0000004 a owl:Class ; rdfs:label "fermentation run" ;
+    rdfs:subClassOf obo:PREFER_9000003 ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty obo:PREFER_8000006 ;
+                      owl:someValuesFrom obo:PREFER_0000014 ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty obo:PREFER_8000015 ;
+                      owl:someValuesFrom obo:PREFER_0000012 ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty obo:RO_0000057 ;
+                      owl:someValuesFrom obo:PREFER_0000011 ] ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000011 a owl:Class ; rdfs:label "fermentation medium" ;
+    rdfs:subClassOf obo:BFO_0000040 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000012 a owl:Class ; rdfs:label "cell biocatalyst" ;
+    rdfs:subClassOf obo:CL_0000000 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000014 a owl:Class ; rdfs:label "bioreactor" ;
+    rdfs:subClassOf obo:BFO_0000040 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+
+# PREFER process variables (information content entities)
+obo:PREFER_0000098 a owl:Class ; rdfs:label "precision fermentation process variable" ;
+    rdfs:subClassOf obo:IAO_0000030 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_9000000 a owl:Class ; rdfs:label "precision fermentation setpoint process variable" ;
+    rdfs:subClassOf obo:PREFER_0000098 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_9000001 a owl:Class ; rdfs:label "precision fermentation measured process variable" ;
+    rdfs:subClassOf obo:PREFER_0000098 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_9000002 a owl:Class ; rdfs:label "precision fermentation calculated process variable" ;
+    rdfs:subClassOf obo:PREFER_0000098 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000180 a owl:Class ; rdfs:label "operation mode setpoint process variable" ;
+    rdfs:subClassOf obo:PREFER_9000000 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000181 a owl:Class ; rdfs:label "batch operation mode" ;
+    rdfs:subClassOf obo:PREFER_0000180 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000182 a owl:Class ; rdfs:label "fed-batch operation mode" ;
+    rdfs:subClassOf obo:PREFER_0000180 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000041 a owl:Class ; rdfs:label "temperature measured process variable" ;
+    rdfs:subClassOf obo:PREFER_9000001 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000040 a owl:Class ; rdfs:label "pH measured process variable" ;
+    rdfs:subClassOf obo:PREFER_9000001 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000036 a owl:Class ; rdfs:label "initial culture volume measured process variable" ;
+    rdfs:subClassOf obo:PREFER_9000001 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
+obo:PREFER_0000091 a owl:Class ; rdfs:label "titer process metric" ;
+    rdfs:subClassOf obo:PREFER_9000002 ;
+    obo:IAO_0000412 <http://purl.obolibrary.org/obo/prefer.owl> .
 
 # Organisms (NCBITaxon). The real taxonomy path is collapsed to organism.
 obo:NCBITaxon_4932 a owl:Class ; rdfs:label "Saccharomyces cerevisiae" ;
@@ -147,7 +217,7 @@ obo:CHEBI_17992 a owl:Class ; rdfs:label "sucrose" ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/chebi.owl> .
 
 # Units (UO). Used as individuals, the way OBI uses them with
-# "has measurement unit label".
+# "has measurement unit label". PREFER itself uses w3id.org/uom IRIs.
 obo:UO_0000027 a owl:NamedIndividual ; rdfs:label "degree Celsius" ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/uo.owl> .
 obo:UO_0000032 a owl:NamedIndividual ; rdfs:label "hour" ;
@@ -160,66 +230,17 @@ obo:UO_0000099 a owl:NamedIndividual ; rdfs:label "liter" ;
     obo:IAO_0000412 <http://purl.obolibrary.org/obo/uo.owl> .
 
 #################################################################
-# New FERM classes
+# New FERM terms (only where PREFER had no fitting term)
 #################################################################
-
-FERM:0000001 a owl:Class ;
-    rdfs:label "fermentation run" ;
-    rdfs:subClassOf obo:COB_0000082 ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty obo:RO_0000057 ;
-                      owl:someValuesFrom obo:COB_0000022 ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty obo:RO_0000057 ;
-                      owl:someValuesFrom obo:OBI_0001046 ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty obo:OBI_0000293 ;
-                      owl:someValuesFrom obo:OBI_0000079 ] ;
-    obo:IAO_0000115 "A planned process in which an organism is grown in a culture medium inside a bioreactor with the aim of producing a target product." ;
-    obo:IAO_0000116 "Not the same as GO:0006113 fermentation, which is the metabolic process inside the cell. A run usually contains that process but is defined by the plan, not the metabolism." .
-
-FERM:0000002 a owl:Class ;
-    rdfs:label "batch fermentation run" ;
-    rdfs:subClassOf FERM:0000001 ;
-    owl:disjointWith FERM:0000003 ;
-    obo:IAO_0000115 "A fermentation run in which all nutrients are supplied at the start and nothing is fed during the run." .
-
-FERM:0000003 a owl:Class ;
-    rdfs:label "fed-batch fermentation run" ;
-    rdfs:subClassOf FERM:0000001 ;
-    obo:IAO_0000115 "A fermentation run in which one or more nutrients are fed during the run and no culture is removed until the end." .
-
-FERM:0000004 a owl:Class ;
-    rdfs:label "production strain" ;
-    rdfs:subClassOf obo:COB_0000022 ;
-    obo:IAO_0000115 "An organism that participates in a fermentation run and is engineered or selected to make the target product." ;
-    obo:IAO_0000116 "Strictly a strain is a population or lineage, not one organism. Kept as an organism subclass to stay small; see the gap report." .
 
 FERM:0000005 a owl:Class ;
     rdfs:label "target product" ;
     rdfs:subClassOf obo:BFO_0000040 ;
     obo:IAO_0000115 "A material entity that a fermentation run is planned to produce, for example a recombinant protein." ;
-    obo:IAO_0000116 "Products should point to Protein Ontology (PR) or ChEBI terms. Not done here because those IRIs were not checked." .
-
-FERM:0000010 a owl:Class ;
-    rdfs:label "product titre datum" ;
-    rdfs:subClassOf obo:IAO_0000032 ;
-    obo:IAO_0000115 "A scalar measurement datum that gives the mass concentration of the target product in the culture broth at the end of a fermentation run." ;
-    obo:IAO_0000116 "UO:0010080 titer is a dilution based unit, so it does not fit a mass concentration titre." .
-
-FERM:0000011 a owl:Class ;
-    rdfs:label "culture temperature datum" ;
-    rdfs:subClassOf obo:IAO_0000032 ;
-    obo:IAO_0000115 "A scalar measurement datum that gives the mean temperature of the culture during a fermentation run." .
-
-FERM:0000012 a owl:Class ;
-    rdfs:label "culture pH datum" ;
-    rdfs:subClassOf obo:IAO_0000032 ;
-    obo:IAO_0000115 "A scalar measurement datum that gives the mean pH of the culture during a fermentation run." .
+    obo:IAO_0000116 "PREFER issue 70 (bioprocess products classification) is open. Products should also point to Protein Ontology (PR) or ChEBI terms; not done here because those IRIs were not checked." .
 
 FERM:0000013 a owl:Class ;
     rdfs:label "run duration datum" ;
     rdfs:subClassOf obo:IAO_0000032 ;
-    obo:IAO_0000115 "A scalar measurement datum that gives the time from inoculation to harvest of a fermentation run." .
-
-FERM:0000014 a owl:Class ;
-    rdfs:label "working volume datum" ;
-    rdfs:subClassOf obo:IAO_0000032 ;
-    obo:IAO_0000115 "A scalar measurement datum that gives the volume of culture broth in the bioreactor at the start of a fermentation run." .
+    obo:IAO_0000115 "A scalar measurement datum that gives the time from inoculation to harvest of a fermentation run." ;
+    obo:IAO_0000116 "No PREFER process variable for total run duration was found. It could be a PREFER calculated process variable instead." .

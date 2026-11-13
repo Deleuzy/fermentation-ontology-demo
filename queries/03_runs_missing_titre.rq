@@ -7,10 +7,10 @@ PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
 
 SELECT ?run_label
 WHERE {
-  ?run a ferm:0000001 ;
+  ?run a obo:PREFER_0000004 ;
        rdfs:label ?run_label .
   FILTER NOT EXISTS {
-    ?datum a ferm:0000010 ;
+    ?datum a obo:PREFER_0000091 ;
            obo:IAO_0000136 ?run .
   }
 }

@@ -1,7 +1,9 @@
 # fermentation-ontology-demo
 
 A small learning demo of semantic web work on precision fermentation data. It
-has a BFO aligned OWL ontology for fermentation runs, a LinkML metadata
+has a small OWL ontology for fermentation runs built on
+[PREFER](https://github.com/Multiomics-Analytics-Group/prefer_ontology), the
+precision fermentation ontology, and aligned to BFO, a LinkML metadata
 template, a script that turns a CSV of runs into RDF with provenance for every
 triple, SPARQL queries, SHACL shapes, a gap report, tests and CI.
 
@@ -57,44 +59,64 @@ its saved output.
 
 ## Ontology design
 
-* **Upper level.** A fermentation run is a `planned process` (COB:0000082),
-  which is a BFO `process` (BFO:0000015). Strains are organisms (COB:0000022),
-  and bioreactors (OBI:0001046) and culture media (OBI:0000079) are material
-  entities (BFO:0000040). Measurements are IAO `scalar measurement datum`
-  (IAO:0000032) individuals that are `about` the run and carry a value and a UO
-  unit, following the pattern OBI uses.
-* **Reused terms.** NCBITaxon for organisms, ChEBI for carbon sources, UO for
-  units, OBI and RO relations (`has specified input`, `has specified output`,
-  `has participant`), IAO for definitions and data. Strain individuals are typed
-  directly with their NCBITaxon class, so "runs per organism" needs no extra
-  relation.
+* **PREFER first.** Every CSV column was first looked up in PREFER (release
+  2026-08-24). A run is a PREFER `fermentation run` (PREFER:0000004), the
+  strain a `cell biocatalyst` (PREFER:0000012), and the medium and bioreactor
+  are PREFER `fermentation medium` and `bioreactor`. Operation mode,
+  temperature, pH, initial culture volume and titer are PREFER process
+  variables. Runs link to them with PREFER relations (`uses bioreactor`,
+  `cultures cell`, `has measured process variable`).
+* **Upper level.** PREFER places a run under `precision fermentation process`,
+  then `planned process` (COB:0000082) and BFO `process` (BFO:0000015).
+  Bioreactors, media and cells are material entities (BFO:0000040), and
+  process variables are information content entities (IAO:0000030).
+* **Other reused terms.** NCBITaxon for organisms (each strain is also typed
+  with its species class), ChEBI for carbon sources, UO for units, IAO for
+  values, definitions and `is about`, OBI `has specified output` for the
+  product.
+* **New terms only for gaps.** Three columns had no fitting term, so the
+  ontology adds `target product`, `run duration datum` and `has carbon source`
+  (a subproperty of PREFER `has medium ingredient`). The gap report lists what
+  was checked for each.
 * **Checked IRIs.** Every external IRI was looked up in OLS (Nov 2026) and its
-  label compared with the expected one. This caught two terms that OBI has made
-  obsolete, `organism` (OBI:0100026) and `planned process` (OBI:0000011); the
-  ontology uses their COB replacements instead.
+  label compared with the expected one. This also showed that OBI has made
+  `organism` (OBI:0100026) and `planned process` (OBI:0000011) obsolete in
+  favour of COB terms.
 * **No full imports.** External terms are declared as small stubs with a label,
-  their superclass and `imported from`, in the spirit of MIREOT. A real build
-  would extract modules with ROBOT or use the Ontology Development Kit (ODK).
+  their superclass and `imported from`, in the spirit of MIREOT. Intermediate
+  PREFER classes are collapsed. A real build would extract modules with ROBOT
+  or use the Ontology Development Kit (ODK), which PREFER itself uses.
 * **Just enough disjointness.** Three BFO disjointness axioms (process,
-  material entity, generically dependent continuant) and batch against
-  fed-batch. That is enough for a reasoner to reject a run that is also typed
-  as a bioreactor, which the tests plant on purpose.
+  material entity, generically dependent continuant). That is enough for a
+  reasoner to reject a run that is also typed as a bioreactor, which the tests
+  plant on purpose.
 * **Provenance.** Each data triple is also written as an `rdf:Statement` with
   `prov:wasDerivedFrom` pointing at the CSV cell it came from, using RFC 7111
   fragments (`runs.csv#cell=row,col`, header is row 1). A test reads every
   measured value back from the cell its provenance names.
 
+## Where the demo departs from PREFER
+
+* **Operation mode.** PREFER links the mode to the bioreactor
+  (`has operational mode`). In the data one bioreactor runs batch on one run and
+  fed-batch on another, so here the mode is a PREFER mode individual that `is
+  about` the run.
+* **Units and values.** PREFER uses w3id.org/uom units and value
+  specifications. The demo uses UO units with IAO `has measurement value`, the
+  older OBI pattern.
+* **Taxon.** PREFER models taxon as a quality with a few species. The demo
+  types each strain with its NCBITaxon class instead.
+
 ## Known gaps in the model
 
-* A strain is modelled as one organism. Strictly it is a population or lineage.
-* `has carbon source` is a subproperty of `has part`. A role based model (the
-  chemical bears a carbon source role) would be cleaner.
+* A strain is modelled as one cell. Strictly it is a population or lineage.
+* `has carbon source` says which ingredient is the carbon source, but a role
+  on the ingredient would be cleaner.
 * Target products are FERM `target product` individuals with a text label. They
-  should point to Protein Ontology terms, which I did not verify.
-* Temperature and pH are single mean values per run, not time series, and
-  there is no link to the device or assay that measured them.
-* FERM IRIs live under the GitHub URL and do not resolve. A real ontology
-  would get a PURL.
+  should point to Protein Ontology terms, which I did not verify. PREFER issue
+  70 on product classification is open.
+* Temperature and pH are single mean values per run, not time series.
+* FERM IRIs live under the GitHub URL and do not resolve.
 * The OWL RL check run locally is weaker than a full DL reasoner. HermiT runs
   in CI (through owlready2 and ROBOT), where Java is available.
 
@@ -121,26 +143,26 @@ its saved output.
 
 | What | Number |
 |---|---|
-| Classes in `ferm.ttl` (FERM / reused) | 29 (10 / 19) |
-| Properties (FERM / reused) | 11 (1 / 10) |
-| Triples in `ferm.ttl` | 194 |
-| External IRIs looked up in OLS / verified | 41 / 41 |
+| Classes in `ferm.ttl` (FERM / reused) | 36 (2 / 34) |
+| Properties (FERM / reused) | 14 (1 / 13) |
+| Triples in `ferm.ttl` | 231 |
+| External IRIs looked up in OLS / verified | 68 / 68 |
 | External IRIs used in the ontology but not verified | 0 |
 | CSV rows converted | 12 |
-| Instance triples | 375 |
-| Provenance records (one per derived triple and source cell) | 448 |
+| Instance triples | 387 |
+| Provenance records (one per derived triple and source cell) | 460 |
 | OWL RL errors on ontology plus data | 0 |
 | OWL RL errors after planting a run typed as a bioreactor | 1 |
 | SHACL violations, `runs.csv` | 0 |
 | SHACL violations, `broken_runs.csv` | 3 |
 | LinkML errors, `runs.csv` / `broken_runs.csv` | 0 / 3 |
-| CSV columns needing a new term (gap report) | 10 of 14 |
+| CSV columns needing a new term (gap report) | 3 of 14 |
 
 SHACL messages for the broken record:
 
 * `datum/B01/pH`: pH must be one decimal value between 0 and 14.
-* `run/B01`: A run needs a culture medium as specified input.
-* `strain/S99`: A production strain must be typed with an NCBITaxon class.
+* `run/B01`: A run needs a fermentation medium as participant.
+* `strain/S99`: A cell biocatalyst (strain) must be typed with an NCBITaxon class.
 
 Query `01_runs_per_organism.rq`:
 
@@ -178,15 +200,15 @@ Query `05_titre_by_mode.rq`:
 
 | mode | n_with_titre | mean_titre | max_titre |
 |---|---|---|---|
-| batch fermentation run | 3 | 0.9 | 1.2 |
-| fed-batch fermentation run | 7 | 3.94 | 7.9 |
+| batch operation mode | 3 | 0.9 | 1.2 |
+| fed-batch operation mode | 7 | 3.94 | 7.9 |
 
 <!-- results:end -->
 
 ## What this is not
 
-* **Not PREFER.** It does not use, copy or extend the PREFER ontology. It is
-  my own small model of the same kind of data.
+* **Not part of PREFER.** It reuses PREFER terms by IRI but is not a PREFER
+  module and was not reviewed by its curators.
 * **Not real data.** Every run, strain, medium and titre in `data/` is made up.
   The query results describe the synthetic data and say nothing about real
   organisms or processes.

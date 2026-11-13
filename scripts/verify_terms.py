@@ -19,7 +19,8 @@ OBO = "http://purl.obolibrary.org/obo/"
 
 # (CURIE, the label we expect, the ontology whose OLS entry we query)
 # (CURIE, expected label, OLS ontology, OLS endpoint, where it is used)
-# "used" = declared in ontology/ferm.ttl; "gap" = only cited in the gap report.
+# "used" = declared in ontology/ferm.ttl; "cited" = only named in the column
+# mapping or gap report as a term that was checked.
 TERMS: list[tuple[str, str, str, str, str]] = [
     ("BFO:0000015", "process", "bfo", "terms", "used"),
     ("BFO:0000031", "generically dependent continuant", "bfo", "terms", "used"),
@@ -35,12 +36,38 @@ TERMS: list[tuple[str, str, str, str, str]] = [
     ("IAO:0000116", "editor note", "iao", "properties", "used"),
     ("IAO:0000412", "imported from", "iao", "properties", "used"),
     ("RO:0000057", "has participant", "ro", "properties", "used"),
-    ("OBI:0000293", "has specified input", "obi", "properties", "used"),
     ("OBI:0000299", "has specified output", "obi", "properties", "used"),
-    ("OBI:0000079", "culture medium", "obi", "terms", "used"),
-    ("OBI:0001046", "bioreactor", "obi", "terms", "used"),
     ("COB:0000022", "organism", "cob", "terms", "used"),
     ("COB:0000082", "planned process", "cob", "terms", "used"),
+    ("CL:0000000", "cell", "cl", "terms", "used"),
+    # PREFER, the precision fermentation ontology (release 2026-08-24)
+    ("PREFER:0000004", "fermentation run", "prefer", "terms", "used"),
+    ("PREFER:9000003", "precision fermentation process", "prefer", "terms", "used"),
+    ("PREFER:0000011", "fermentation medium", "prefer", "terms", "used"),
+    ("PREFER:0000012", "cell biocatalyst", "prefer", "terms", "used"),
+    ("PREFER:0000014", "bioreactor", "prefer", "terms", "used"),
+    ("PREFER:0000098", "precision fermentation process variable", "prefer", "terms", "used"),
+    ("PREFER:9000000", "precision fermentation setpoint process variable", "prefer", "terms", "used"),
+    ("PREFER:9000001", "precision fermentation measured process variable", "prefer", "terms", "used"),
+    ("PREFER:9000002", "precision fermentation calculated process variable", "prefer", "terms", "used"),
+    ("PREFER:0000180", "operation mode setpoint process variable", "prefer", "terms", "used"),
+    ("PREFER:0000181", "batch operation mode", "prefer", "terms", "used"),
+    ("PREFER:0000182", "fed-batch operation mode", "prefer", "terms", "used"),
+    ("PREFER:0000041", "temperature measured process variable", "prefer", "terms", "used"),
+    ("PREFER:0000040", "pH measured process variable", "prefer", "terms", "used"),
+    ("PREFER:0000036", "initial culture volume measured process variable", "prefer", "terms", "used"),
+    ("PREFER:0000091", "titer process metric", "prefer", "terms", "used"),
+    ("PREFER:8000004", "has medium ingredient", "prefer", "properties", "used"),
+    ("PREFER:8000006", "uses bioreactor", "prefer", "properties", "used"),
+    ("PREFER:8000015", "cultures cell", "prefer", "properties", "used"),
+    ("PREFER:8000060", "has measured process variable", "prefer", "properties", "used"),
+    ("PREFER:0000074", "compound concentration variable", "prefer", "terms", "cited"),
+    ("PREFER:0000038", "batch medium pH measured process variable", "prefer", "terms", "cited"),
+    ("PREFER:0000043", "volume measured process variable", "prefer", "terms", "cited"),
+    ("PREFER:0000203", "production culture", "prefer", "terms", "cited"),
+    ("PREFER:8000017", "has measured compound", "prefer", "properties", "cited"),
+    ("PREFER:8000018", "has operational mode", "prefer", "properties", "cited"),
+    # Organisms, chemicals, units
     ("NCBITaxon:4932", "Saccharomyces cerevisiae", "ncbitaxon", "terms", "used"),
     ("NCBITaxon:562", "Escherichia coli", "ncbitaxon", "terms", "used"),
     ("NCBITaxon:460519", "Komagataella phaffii", "ncbitaxon", "terms", "used"),
@@ -55,13 +82,17 @@ TERMS: list[tuple[str, str, str, str, str]] = [
     ("UO:0000175", "gram per liter", "uo", "terms", "used"),
     ("UO:0000196", "pH", "uo", "terms", "used"),
     ("UO:0000099", "liter", "uo", "terms", "used"),
-    ("OBI:0100026", "obsolete organism", "obi", "terms", "gap"),
-    ("OBI:0000011", "obsolete planned process", "obi", "terms", "gap"),
-    ("GO:0006113", "fermentation", "go", "terms", "gap"),
-    ("UO:0010080", "titer", "uo", "terms", "gap"),
-    ("MSIO:0000181", "batch cell culture", "msio", "terms", "gap"),
-    ("MSIO:0000165", "constantly fed-batch culture reactor", "msio", "terms", "gap"),
-    ("NCIT:C210081", "Incubation Temperature", "ncit", "terms", "gap"),
+    # Checked and not used
+    ("OBI:0000079", "culture medium", "obi", "terms", "cited"),
+    ("OBI:0001046", "bioreactor", "obi", "terms", "cited"),
+    ("OBI:0000293", "has specified input", "obi", "properties", "cited"),
+    ("OBI:0100026", "obsolete organism", "obi", "terms", "cited"),
+    ("OBI:0000011", "obsolete planned process", "obi", "terms", "cited"),
+    ("GO:0006113", "fermentation", "go", "terms", "cited"),
+    ("UO:0010080", "titer", "uo", "terms", "cited"),
+    ("MSIO:0000181", "batch cell culture", "msio", "terms", "cited"),
+    ("MSIO:0000165", "constantly fed-batch culture reactor", "msio", "terms", "cited"),
+    ("NCIT:C210081", "Incubation Temperature", "ncit", "terms", "cited"),
 ]
 
 

@@ -7,29 +7,33 @@ FERM = Namespace("https://github.com/Deleuzy/fermentation-ontology-demo/FERM_")
 DATA = Namespace("https://github.com/Deleuzy/fermentation-ontology-demo/data/")
 PROV = Namespace("http://www.w3.org/ns/prov#")
 
-# Classes and properties, named so the code reads like the ontology.
-FERMENTATION_RUN = FERM["0000001"]
-BATCH_RUN = FERM["0000002"]
-FED_BATCH_RUN = FERM["0000003"]
-PRODUCTION_STRAIN = FERM["0000004"]
+# PREFER terms (precision fermentation ontology), reused wherever they fit.
+FERMENTATION_RUN = OBO.PREFER_0000004
+FERMENTATION_MEDIUM = OBO.PREFER_0000011
+CELL_BIOCATALYST = OBO.PREFER_0000012
+BIOREACTOR = OBO.PREFER_0000014
+BATCH_MODE = OBO.PREFER_0000181
+FED_BATCH_MODE = OBO.PREFER_0000182
+TEMPERATURE_VAR = OBO.PREFER_0000041
+PH_VAR = OBO.PREFER_0000040
+INITIAL_VOLUME_VAR = OBO.PREFER_0000036
+TITER_METRIC = OBO.PREFER_0000091
+USES_BIOREACTOR = OBO.PREFER_8000006
+CULTURES_CELL = OBO.PREFER_8000015
+HAS_MEASURED_VARIABLE = OBO.PREFER_8000060
+
+# FERM terms, only for the gaps in results/gap_report.md.
 TARGET_PRODUCT = FERM["0000005"]
-TITRE_DATUM = FERM["0000010"]
-TEMPERATURE_DATUM = FERM["0000011"]
-PH_DATUM = FERM["0000012"]
 DURATION_DATUM = FERM["0000013"]
-VOLUME_DATUM = FERM["0000014"]
 HAS_CARBON_SOURCE = FERM["0000101"]
 
-CULTURE_MEDIUM = OBO.OBI_0000079
-BIOREACTOR = OBO.OBI_0001046
 HAS_PARTICIPANT = OBO.RO_0000057
-HAS_SPECIFIED_INPUT = OBO.OBI_0000293
 HAS_SPECIFIED_OUTPUT = OBO.OBI_0000299
 IS_ABOUT = OBO.IAO_0000136
 HAS_VALUE = OBO.IAO_0000004
 HAS_UNIT = OBO.IAO_0000039
 
-MODE_CLASS = {"batch": BATCH_RUN, "fed-batch": FED_BATCH_RUN}
+MODE_CLASS = {"batch": BATCH_MODE, "fed-batch": FED_BATCH_MODE}
 
 CARBON_SOURCE_CLASS = {
     "glucose": OBO.CHEBI_17234,
@@ -38,11 +42,15 @@ CARBON_SOURCE_CLASS = {
     "sucrose": OBO.CHEBI_17992,
 }
 
-# CSV column -> (datum class, unit individual)
+# CSV column -> (datum class, unit individual, link from the run)
+# Measured variables hang off the run with PREFER "has measured process
+# variable"; the others point at the run with IAO "is about".
+MEASURED = "has measured process variable"
+ABOUT = "is about"
 MEASUREMENT_COLUMNS = {
-    "working_volume_L": (VOLUME_DATUM, OBO.UO_0000099),
-    "temperature_C": (TEMPERATURE_DATUM, OBO.UO_0000027),
-    "pH": (PH_DATUM, OBO.UO_0000196),
-    "duration_h": (DURATION_DATUM, OBO.UO_0000032),
-    "titre_g_per_L": (TITRE_DATUM, OBO.UO_0000175),
+    "working_volume_L": (INITIAL_VOLUME_VAR, OBO.UO_0000099, MEASURED),
+    "temperature_C": (TEMPERATURE_VAR, OBO.UO_0000027, MEASURED),
+    "pH": (PH_VAR, OBO.UO_0000196, MEASURED),
+    "duration_h": (DURATION_DATUM, OBO.UO_0000032, ABOUT),
+    "titre_g_per_L": (TITER_METRIC, OBO.UO_0000175, ABOUT),
 }

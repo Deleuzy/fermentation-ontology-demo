@@ -59,6 +59,10 @@ def render(mapping: dict, terms_file: Path) -> str:
         if col["status"] == "reused":
             terms = ", ".join(f"{c} ({labels.get(c, '?')})" for c in col["maps_to"])
             lines.append(f"* `{name}`: {terms}")
+            for c in col.get("checked", []):
+                lines.append(f"  * also checked {c['curie']} ({labels.get(c['curie'], '?')}): {c['why_not']}")
+            if col.get("note"):
+                lines.append(f"  * note: {col['note']}")
     lines += ["", "## Local columns", ""]
     for name, col in mapping.items():
         if col["status"] == "local":

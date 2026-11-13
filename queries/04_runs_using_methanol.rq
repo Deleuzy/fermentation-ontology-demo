@@ -6,12 +6,12 @@ PREFIX ferm: <https://github.com/Deleuzy/fermentation-ontology-demo/FERM_>
 
 SELECT ?run_label ?organism
 WHERE {
-  ?run a ferm:0000001 ;
+  ?run a obo:PREFER_0000004 ;
        rdfs:label ?run_label ;
-       obo:OBI_0000293/ferm:0000101 ?portion ;
-       obo:RO_0000057 ?strain .
+       obo:RO_0000057/ferm:0000101 ?portion ;
+       obo:PREFER_8000015 ?strain .
   ?portion a obo:CHEBI_17790 .
-  ?strain a ferm:0000004 , ?taxon .
+  ?strain a obo:PREFER_0000012 , ?taxon .
   ?taxon rdfs:label ?organism .
   FILTER(STRSTARTS(STR(?taxon), "http://purl.obolibrary.org/obo/NCBITaxon_"))
 }

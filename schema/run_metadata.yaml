@@ -3,10 +3,10 @@ name: run_metadata
 title: Fermentation run metadata template
 description: >-
   One row per fermentation run, as in data/runs.csv. Required slots are the
-  minimum needed to map a run to the FERM ontology. Titre, duration and
+  minimum needed to map a run to PREFER and FERM terms. Titre, duration and
   working volume are recommended. Learning demo, not a community standard.
 license: https://creativecommons.org/licenses/by/4.0/
-version: "2026-11-12"
+version: "2026-11-13"
 prefixes:
   linkml: https://w3id.org/linkml/
   obo: http://purl.obolibrary.org/obo/
@@ -20,7 +20,7 @@ imports:
 classes:
   FermentationRun:
     description: Metadata for one fermentation run.
-    class_uri: ferm:0000001
+    class_uri: obo:PREFER_0000004
     slots:
       - run_id
       - strain_id
@@ -122,9 +122,9 @@ enums:
     description: How nutrients are supplied during the run.
     permissible_values:
       batch:
-        meaning: ferm:0000002
+        meaning: obo:PREFER_0000181
       fed-batch:
-        meaning: ferm:0000003
+        meaning: obo:PREFER_0000182
   CarbonSource:
     description: Main carbon source in the medium, mapped to ChEBI.
     permissible_values:

@@ -1,29 +1,29 @@
 {
   "ontology": {
-    "ontology_triples": 194,
-    "classes": 29,
-    "ferm_classes": 10,
-    "external_classes": 19,
-    "properties": 11,
+    "ontology_triples": 231,
+    "classes": 36,
+    "ferm_classes": 2,
+    "external_classes": 34,
+    "properties": 14,
     "ferm_properties": 1,
-    "external_properties": 10,
+    "external_properties": 13,
     "unit_individuals": 5,
-    "subclass_axioms": 29,
+    "subclass_axioms": 36,
     "existential_restrictions": 3,
-    "disjointness_axioms": 4
+    "disjointness_axioms": 3
   },
   "external_terms": {
-    "looked_up_in_ols": 41,
-    "verified": 41,
-    "used_in_ontology": 34,
+    "looked_up_in_ols": 68,
+    "verified": 68,
+    "used_in_ontology": 52,
     "used_but_not_verified": []
   },
   "metadata_problems": [],
   "conversion": {
     "csv_rows": 12,
-    "instance_triples": 375,
-    "provenance_records": 448,
-    "provenance_triples": 2240
+    "instance_triples": 387,
+    "provenance_records": 460,
+    "provenance_triples": 2300
   },
   "reasoning_owl_rl": {
     "errors_ontology_plus_data": [],
@@ -43,11 +43,11 @@
       },
       {
         "focus": "https://github.com/Deleuzy/fermentation-ontology-demo/data/run/B01",
-        "message": "A run needs a culture medium as specified input."
+        "message": "A run needs a fermentation medium as participant."
       },
       {
         "focus": "https://github.com/Deleuzy/fermentation-ontology-demo/data/strain/S99",
-        "message": "A production strain must be typed with an NCBITaxon class."
+        "message": "A cell biocatalyst (strain) must be typed with an NCBITaxon class."
       }
     ]
   },
@@ -61,8 +61,8 @@
   },
   "gap_report": {
     "local": 1,
-    "new": 10,
-    "reused": 3
+    "new": 3,
+    "reused": 10
   },
   "queries": {
     "01_runs_per_organism": [
@@ -132,13 +132,13 @@
     ],
     "05_titre_by_mode": [
       {
-        "mode": "batch fermentation run",
+        "mode": "batch operation mode",
         "n_with_titre": 3,
         "mean_titre": 0.9,
         "max_titre": 1.2
       },
       {
-        "mode": "fed-batch fermentation run",
+        "mode": "fed-batch operation mode",
         "n_with_titre": 7,
         "mean_titre": 3.94,
         "max_titre": 7.9

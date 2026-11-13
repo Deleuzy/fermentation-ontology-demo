@@ -17,8 +17,8 @@ def test_shacl_catches_each_fault_in_broken_record(broken):
     assert not conforms
     assert [(v.focus.rsplit("/data/", 1)[1], v.message) for v in violations] == [
         ("datum/B01/pH", "pH must be one decimal value between 0 and 14."),
-        ("run/B01", "A run needs a culture medium as specified input."),
-        ("strain/S99", "A production strain must be typed with an NCBITaxon class."),
+        ("run/B01", "A run needs a fermentation medium as participant."),
+        ("strain/S99", "A cell biocatalyst (strain) must be typed with an NCBITaxon class."),
     ]
 
 
