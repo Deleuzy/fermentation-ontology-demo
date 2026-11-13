@@ -28,6 +28,8 @@ All data is synthetic and the scope is a toy. See "What this is not" below.
 | `src/ferm_demo/` | Converter, checks, gap report and the pipeline that writes `results/` |
 | `results/results.json` | Every number in this README comes from here |
 | `results/gap_report.md` | Columns that needed new terms, with the proposed terms |
+| `mappings/ferm.sssom.tsv` | SSSOM mappings: FERM gap terms to PREFER and IAO, and UO units to the uom units PREFER uses |
+| `docs/fair_checklist.md` | Self check against the FAIR principles, including what is missing |
 
 ## How to run
 
@@ -110,8 +112,9 @@ its saved output.
 ## Known gaps in the model
 
 * A strain is modelled as one cell. Strictly it is a population or lineage.
-* `has carbon source` says which ingredient is the carbon source, but a role
-  on the ingredient would be cleaner.
+* `has carbon source` says which ingredient is the carbon source, but a carbon
+  source role on the ingredient, next to PREFER `fermentation medium role`
+  (PREFER:0000108), would be cleaner.
 * Target products are FERM `target product` individuals with a text label. They
   should point to Protein Ontology terms, which I did not verify. PREFER issue
   70 on product classification is open.
@@ -126,8 +129,11 @@ its saved output.
   satisfiability probe for each FERM class, and a planted inconsistency that
   must be caught.
 * **HermiT** in CI through owlready2 (the test is skipped without Java), and
-  ROBOT `reason` with HermiT. ROBOT `report` runs in CI and its TSV is uploaded
-  as a build artifact; it is not used for any number here.
+  ROBOT `reason` with HermiT. ROBOT `report` runs in CI and fails the build on
+  any ERROR level problem; its TSV is uploaded as a build artifact and is not
+  used for any number here.
+* **Mappings**: a test checks that the SSSOM file uses SKOS predicates and only
+  cites FERM terms in the ontology or external terms verified in OLS.
 * **SHACL** (`pyshacl`): required links (strain, bioreactor, medium, product,
   temperature, pH, run mode), NCBITaxon typing of strains, carbon source on
   media, value ranges and units.
@@ -146,7 +152,7 @@ its saved output.
 | Classes in `ferm.ttl` (FERM / reused) | 36 (2 / 34) |
 | Properties (FERM / reused) | 14 (1 / 13) |
 | Triples in `ferm.ttl` | 231 |
-| External IRIs looked up in OLS / verified | 68 / 68 |
+| External IRIs looked up in OLS / verified | 78 / 78 |
 | External IRIs used in the ontology but not verified | 0 |
 | CSV rows converted | 12 |
 | Instance triples | 387 |

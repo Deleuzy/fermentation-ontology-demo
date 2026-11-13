@@ -1,0 +1,23 @@
+# curie_map:
+#   FERM: https://github.com/Deleuzy/fermentation-ontology-demo/FERM_
+#   PREFER: http://purl.obolibrary.org/obo/PREFER_
+#   IAO: http://purl.obolibrary.org/obo/IAO_
+#   BFO: http://purl.obolibrary.org/obo/BFO_
+#   UO: http://purl.obolibrary.org/obo/UO_
+#   uom: https://w3id.org/uom/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+# mapping_set_id: https://github.com/Deleuzy/fermentation-ontology-demo/mappings/ferm.sssom.tsv
+# mapping_set_description: How the three FERM gap terms relate to PREFER and IAO, and how the UO units used in the demo line up with the w3id.org/uom units PREFER uses. Learning demo, curated by hand.
+# license: https://creativecommons.org/licenses/by/4.0/
+# mapping_date: 2026-11-13
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment
+FERM:0000005	target product	skos:broadMatch	BFO:0000040	material entity	semapv:ManualMappingCuration	Asserted parent. PREFER issue 70 on product classification may give a closer match later.
+FERM:0000013	run duration datum	skos:broadMatch	IAO:0000032	scalar measurement datum	semapv:ManualMappingCuration	Asserted parent.
+FERM:0000013	run duration datum	skos:relatedMatch	PREFER:9000002	precision fermentation calculated process variable	semapv:ManualMappingCuration	Possible home in PREFER; run duration is computed from inoculation and harvest times.
+FERM:0000101	has carbon source	skos:broadMatch	PREFER:8000004	has medium ingredient	semapv:ManualMappingCuration	Asserted superproperty.
+UO:0000027	degree Celsius	skos:exactMatch	uom:Cel	degree Celsius	semapv:ManualMappingCuration	uom IRI and label from PREFER src/templates/units.tsv.
+UO:0000032	hour	skos:exactMatch	uom:h	hour	semapv:ManualMappingCuration	uom IRI and label from PREFER src/templates/units.tsv.
+UO:0000099	liter	skos:exactMatch	uom:L	liter	semapv:ManualMappingCuration	uom IRI and label from PREFER src/templates/units.tsv.
+UO:0000175	gram per liter	skos:exactMatch	uom:g.L-1	gram per litre	semapv:ManualMappingCuration	uom IRI and label from PREFER src/templates/units.tsv.
+UO:0000196	pH	skos:exactMatch	uom:%5BpH%5D	pH based unit	semapv:ManualMappingCuration	uom IRI and label from PREFER src/templates/units.tsv.

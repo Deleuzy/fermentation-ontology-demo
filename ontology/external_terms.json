@@ -396,6 +396,69 @@
     "verified": true
   },
   {
+    "curie": "PREFER:0000108",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000108",
+    "expected_label": "fermentation medium role",
+    "ols_label": "fermentation medium role",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000016",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000016",
+    "expected_label": "fermentation phase",
+    "ols_label": "fermentation phase",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:8000059",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_8000059",
+    "expected_label": "measured at time datum",
+    "ols_label": "measured at time datum",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:0000107",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_0000107",
+    "expected_label": "compound formed variable",
+    "ols_label": "compound formed variable",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:7000006",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_7000006",
+    "expected_label": "unit of optical density",
+    "ols_label": "unit of optical density",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:7000007",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_7000007",
+    "expected_label": "dimensionless unit",
+    "ols_label": "dimensionless unit",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "PREFER:7000008",
+    "iri": "http://purl.obolibrary.org/obo/PREFER_7000008",
+    "expected_label": "revolution per minute",
+    "ols_label": "revolution per minute",
+    "ols_ontology": "prefer",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
     "curie": "NCBITaxon:4932",
     "iri": "http://purl.obolibrary.org/obo/NCBITaxon_4932",
     "expected_label": "Saccharomyces cerevisiae",
@@ -581,6 +644,33 @@
     "expected_label": "titer",
     "ols_label": "titer",
     "ols_ontology": "uo",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000186",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000186",
+    "expected_label": "dimensionless unit",
+    "ols_label": "dimensionless unit",
+    "ols_ontology": "uo",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "UO:0000269",
+    "iri": "http://purl.obolibrary.org/obo/UO_0000269",
+    "expected_label": "absorbance unit",
+    "ols_label": "absorbance unit",
+    "ols_ontology": "uo",
+    "used_in": "cited",
+    "verified": true
+  },
+  {
+    "curie": "NCIT:C70469",
+    "iri": "http://purl.obolibrary.org/obo/NCIT_C70469",
+    "expected_label": "Revolution per Minute",
+    "ols_label": "Revolution per Minute",
+    "ols_ontology": "ncit",
     "used_in": "cited",
     "verified": true
   },

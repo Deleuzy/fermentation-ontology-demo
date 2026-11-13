@@ -38,6 +38,10 @@ columns:
     checked:
       - curie: PREFER:8000017
         why_not: PREFER has measured compound links a run to a chemical entity that is measured. It does not say the entity is the intended product.
+      - curie: PREFER:0000107
+        why_not: Compound formed variable is a balance metric (how much of a compound was formed), an information entity, not the product itself.
+      - curie: PREFER:0000203
+        why_not: Production culture is a role of the culture that makes the product, not of the product.
     proposed:
       label: target product
       parent: BFO:0000040 material entity
@@ -54,10 +58,12 @@ columns:
     checked:
       - curie: PREFER:8000004
         why_not: Used as the parent. PREFER has medium ingredient does not say which ingredient is the carbon source.
+      - curie: PREFER:0000108
+        why_not: Fermentation medium role (batch, feed and seed medium) is where PREFER keeps medium roles. A carbon source role for an ingredient, placed next to it under BFO role, would be the cleaner model than a new relation.
     proposed:
       label: has carbon source
       parent: PREFER:8000004 has medium ingredient
-      note: The chemicals are reused from ChEBI; only the relation is new. A carbon source role on the ingredient would be the cleaner model.
+      note: The chemicals are reused from ChEBI; only the relation is new. A carbon source role on the ingredient, beside PREFER:0000108 fermentation medium role, would be the cleaner model.
   bioreactor_id:
     status: reused
     maps_to: [PREFER:0000014]
@@ -85,6 +91,11 @@ columns:
   duration_h:
     status: new
     maps_to: [FERM:0000013, UO:0000032]
+    checked:
+      - curie: PREFER:0000016
+        why_not: Fermentation phase is a process (batch, feed, growth, production phase). It has no variable for how long the whole run lasted.
+      - curie: PREFER:8000059
+        why_not: Measured at time datum time stamps a single measurement; it does not give the run duration.
     proposed:
       label: run duration datum
       parent: IAO:0000032 scalar measurement datum

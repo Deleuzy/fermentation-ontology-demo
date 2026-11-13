@@ -9,14 +9,14 @@ Columns: 14. local: 1, new: 3, reused: 10.
 
 | Column | Proposed term | Parent | Existing terms checked |
 |---|---|---|---|
-| `target_product` | target product | BFO:0000040 material entity | PREFER:8000017 (has measured compound): PREFER has measured compound links a run to a chemical entity that is measured. It does not say the entity is the intended product. |
-| `carbon_source` | has carbon source | PREFER:8000004 has medium ingredient | PREFER:8000004 (has medium ingredient): Used as the parent. PREFER has medium ingredient does not say which ingredient is the carbon source. |
-| `duration_h` | run duration datum | IAO:0000032 scalar measurement datum | none found |
+| `target_product` | target product | BFO:0000040 material entity | PREFER:8000017 (has measured compound): PREFER has measured compound links a run to a chemical entity that is measured. It does not say the entity is the intended product.; PREFER:0000107 (compound formed variable): Compound formed variable is a balance metric (how much of a compound was formed), an information entity, not the product itself.; PREFER:0000203 (production culture): Production culture is a role of the culture that makes the product, not of the product. |
+| `carbon_source` | has carbon source | PREFER:8000004 has medium ingredient | PREFER:8000004 (has medium ingredient): Used as the parent. PREFER has medium ingredient does not say which ingredient is the carbon source.; PREFER:0000108 (fermentation medium role): Fermentation medium role (batch, feed and seed medium) is where PREFER keeps medium roles. A carbon source role for an ingredient, placed next to it under BFO role, would be the cleaner model than a new relation. |
+| `duration_h` | run duration datum | IAO:0000032 scalar measurement datum | PREFER:0000016 (fermentation phase): Fermentation phase is a process (batch, feed, growth, production phase). It has no variable for how long the whole run lasted.; PREFER:8000059 (measured at time datum): Measured at time datum time stamps a single measurement; it does not give the run duration. |
 
 ## Notes on proposed terms
 
 * `target_product`: PREFER issue 70 (bioprocess products classification) is open and covers this area, so this gap may close there. Each product should also point to a Protein Ontology (PR) term, not done because the PR IRIs were not checked.
-* `carbon_source`: The chemicals are reused from ChEBI; only the relation is new. A carbon source role on the ingredient would be the cleaner model.
+* `carbon_source`: The chemicals are reused from ChEBI; only the relation is new. A carbon source role on the ingredient, beside PREFER:0000108 fermentation medium role, would be the cleaner model.
 * `duration_h`: No PREFER variable for total run time (inoculation to harvest) was found in the 2026-08-24 release. It may fit as a PREFER calculated process variable.
 
 ## Columns covered by existing terms

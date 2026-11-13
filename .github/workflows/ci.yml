@@ -43,7 +43,7 @@ jobs:
           robot reason --reasoner HermiT --input ontology/ferm.ttl --output build/ferm-reasoned.owl
           robot merge --input ontology/ferm.ttl --input build/instances.ttl \
             reason --reasoner HermiT --output build/ferm-with-data-reasoned.owl
-          robot report --input ontology/ferm.ttl --fail-on none --output build/robot_report.tsv
+          robot report --input ontology/ferm.ttl --fail-on ERROR --output build/robot_report.tsv
           echo "ROBOT report rows by level:"
           tail -n +2 build/robot_report.tsv | cut -f1 | sort | uniq -c
 
